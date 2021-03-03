@@ -1,21 +1,31 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-
-    <title>The HTML5 Herald</title>
-    <meta name="description" content="The HTML5 Herald">
-    <meta name="author" content="SitePoint">
-
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
-
+    <title>HTML5 Page</title>
 </head>
 
 <body>
-    <h1>Hello World!</h1>
-    <script src="js/scripts.js"></script>
+    <h1>Frontend</h1>
+    <ul>
+    </ul>
+    <script>
+        let ul = document.querySelector("ul")
+        const updateUI = (locations) => {
+            let liArray = locations.map((location) =>
+                `<li>${location.id} - ${location.latitude} - ${location.longitude}</li>`)
+            let mj = liArray.join("\n")
+            console.log(mj)
+            ul.innerHTML = mj
+        }
+        const main = async () => {
+            let hr = await fetch("api/locations")
+            let customers = await hr.json()
+            updateUI(customers)
+        }
+        main()
+    </script>
 </body>
 
 </html>
